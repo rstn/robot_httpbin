@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20160314 17:11:34.486" generator="Robot 2.9 (Python 2.7.6 on linux2)">
+<suite source="/home/rr/PycharmProjects/robot_httpbin/test/test.robot" id="s1" name="Test">
+<test id="s1-t1" name="Test Accept header in /get response">
+<kw name="Httpbin Get Specific Header" library="httpbin">
+<doc>Converts response of http://httpbin.org/get to dict and extracts</doc>
+<arguments>
+<arg>Accept</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:34.538" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:34.848" level="INFO">${result} = */*</msg>
+<status status="PASS" endtime="20160314 17:11:34.848" starttime="20160314 17:11:34.533"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>*/*</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:34.849" starttime="20160314 17:11:34.849"></status>
+</kw>
+<kw name="Httpbin Get Specific Header" library="httpbin">
+<doc>Converts response of http://httpbin.org/get to dict and extracts</doc>
+<arguments>
+<arg>AcceptAccept</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:34.850" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:35.341" level="INFO">${result} = None</msg>
+<status status="PASS" endtime="20160314 17:11:35.341" starttime="20160314 17:11:34.849"></status>
+</kw>
+<kw name="Should Not Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are equal.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>*/*</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:35.342" starttime="20160314 17:11:35.341"></status>
+</kw>
+<doc>test Accept header contents for /get
+set missing header name in /get response</doc>
+<status status="PASS" endtime="20160314 17:11:35.342" critical="yes" starttime="20160314 17:11:34.533"></status>
+</test>
+<test id="s1-t2" name="Test lines count in response /stream">
+<kw name="Httpbin Stream Count Lines" library="httpbin">
+<doc>Returns lines count in http://httpbin.org/stream/n response.</doc>
+<arguments>
+<arg>3</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:35.343" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:35.784" level="INFO">${result} = 3</msg>
+<status status="PASS" endtime="20160314 17:11:35.784" starttime="20160314 17:11:35.342"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>3</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:35.785" starttime="20160314 17:11:35.784"></status>
+</kw>
+<kw name="Httpbin Stream Count Lines" library="httpbin">
+<doc>Returns lines count in http://httpbin.org/stream/n response.</doc>
+<arguments>
+<arg>50</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:35.787" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:36.220" level="INFO">${result} = 50</msg>
+<status status="PASS" endtime="20160314 17:11:36.220" starttime="20160314 17:11:35.785"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:36.222" starttime="20160314 17:11:36.221"></status>
+</kw>
+<kw name="Httpbin Stream Count Lines" library="httpbin">
+<doc>Returns lines count in http://httpbin.org/stream/n response.</doc>
+<arguments>
+<arg>4</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:36.225" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:36.514" level="INFO">${result} = 4</msg>
+<status status="PASS" endtime="20160314 17:11:36.514" starttime="20160314 17:11:36.222"></status>
+</kw>
+<kw name="Should Not Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are equal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>3</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:36.515" starttime="20160314 17:11:36.514"></status>
+</kw>
+<doc>test lines count for stream respons
+set number of lines as url parameter</doc>
+<status status="PASS" endtime="20160314 17:11:36.515" critical="yes" starttime="20160314 17:11:35.342"></status>
+</test>
+<test id="s1-t3" name="Test response status for successful and unsuccessful response from /basic_auth">
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>200</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:36.517" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:36.983" level="INFO">${result} = 200</msg>
+<status status="PASS" endtime="20160314 17:11:36.983" starttime="20160314 17:11:36.516"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:36.984" starttime="20160314 17:11:36.983"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:36.984" starttime="20160314 17:11:36.515"></status>
+</kw>
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>invalid</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>401</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:36.985" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:37.276" level="INFO">${result} = 401</msg>
+<status status="PASS" endtime="20160314 17:11:37.276" starttime="20160314 17:11:36.985"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:37.276" starttime="20160314 17:11:37.276"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:37.276" starttime="20160314 17:11:36.984"></status>
+</kw>
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>${VALID_USER}</arg>
+<arg>invalid</arg>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>401</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:37.278" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:37.563" level="INFO">${result} = 401</msg>
+<status status="PASS" endtime="20160314 17:11:37.563" starttime="20160314 17:11:37.277"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:37.564" starttime="20160314 17:11:37.563"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:37.564" starttime="20160314 17:11:37.276"></status>
+</kw>
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>invalid</arg>
+<arg>whatever</arg>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>401</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:37.568" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:37.861" level="INFO">${result} = 401</msg>
+<status status="PASS" endtime="20160314 17:11:37.861" starttime="20160314 17:11:37.566"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:37.863" starttime="20160314 17:11:37.861"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:37.863" starttime="20160314 17:11:37.565"></status>
+</kw>
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>${EMPTY}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>404</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:37.870" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:38.325" level="INFO">${result} = 404</msg>
+<status status="PASS" endtime="20160314 17:11:38.325" starttime="20160314 17:11:37.866"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:38.326" starttime="20160314 17:11:38.325"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:38.326" starttime="20160314 17:11:37.864"></status>
+</kw>
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>${VALID_USER}</arg>
+<arg>${EMPTY}</arg>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>404</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:38.327" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:38.794" level="INFO">${result} = 404</msg>
+<status status="PASS" endtime="20160314 17:11:38.794" starttime="20160314 17:11:38.327"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:38.794" starttime="20160314 17:11:38.794"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:38.794" starttime="20160314 17:11:38.326"></status>
+</kw>
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>404</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:38.796" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:39.245" level="INFO">${result} = 404</msg>
+<status status="PASS" endtime="20160314 17:11:39.245" starttime="20160314 17:11:38.795"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:39.247" starttime="20160314 17:11:39.246"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:39.247" starttime="20160314 17:11:38.794"></status>
+</kw>
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>invalid</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>401</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:39.253" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:39.722" level="INFO">${result} = 401</msg>
+<status status="PASS" endtime="20160314 17:11:39.723" starttime="20160314 17:11:39.250"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:39.724" starttime="20160314 17:11:39.723"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:39.725" starttime="20160314 17:11:39.248"></status>
+</kw>
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>${VALID_USER}</arg>
+<arg>invalid</arg>
+<arg>401</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:39.731" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:40.039" level="INFO">${result} = 401</msg>
+<status status="PASS" endtime="20160314 17:11:40.039" starttime="20160314 17:11:39.727"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:40.041" starttime="20160314 17:11:40.040"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:40.042" starttime="20160314 17:11:39.725"></status>
+</kw>
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>invalid</arg>
+<arg>whatever</arg>
+<arg>401</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:40.048" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:40.339" level="INFO">${result} = 401</msg>
+<status status="PASS" endtime="20160314 17:11:40.340" starttime="20160314 17:11:40.044"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:40.342" starttime="20160314 17:11:40.340"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:40.342" starttime="20160314 17:11:40.042"></status>
+</kw>
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>${EMPTY}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>401</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:40.349" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:40.652" level="INFO">${result} = 401</msg>
+<status status="PASS" endtime="20160314 17:11:40.652" starttime="20160314 17:11:40.345"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:40.654" starttime="20160314 17:11:40.652"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:40.654" starttime="20160314 17:11:40.342"></status>
+</kw>
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>${VALID_USER}</arg>
+<arg>${EMPTY}</arg>
+<arg>401</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:40.660" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:40.955" level="INFO">${result} = 401</msg>
+<status status="PASS" endtime="20160314 17:11:40.955" starttime="20160314 17:11:40.657"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:40.957" starttime="20160314 17:11:40.956"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:40.958" starttime="20160314 17:11:40.655"></status>
+</kw>
+<kw name="Get Auth Response Status">
+<doc>Test response status for authorization request</doc>
+<arguments>
+<arg>${VALID_USER}</arg>
+<arg>${VALID_PASSWORD}</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<arg>401</arg>
+</arguments>
+<kw name="Httpbin Basic Auth Response Status" library="httpbin">
+<doc>Returns response status of http://httpbin.org/basic-auth/user/passwd request.</doc>
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${header_username}</arg>
+<arg>${header_password}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20160314 17:11:40.964" level="INFO">Starting new HTTP connection (1): httpbin.org</msg>
+<msg timestamp="20160314 17:11:41.415" level="INFO">${result} = 401</msg>
+<status status="PASS" endtime="20160314 17:11:41.415" starttime="20160314 17:11:40.960"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${expected}</arg>
+</arguments>
+<status status="PASS" endtime="20160314 17:11:41.417" starttime="20160314 17:11:41.416"></status>
+</kw>
+<status status="PASS" endtime="20160314 17:11:41.418" starttime="20160314 17:11:40.958"></status>
+</kw>
+<doc>test basic auth
+set username and password, headers username and password</doc>
+<status status="PASS" endtime="20160314 17:11:41.418" critical="yes" starttime="20160314 17:11:36.515"></status>
+</test>
+<doc>Test cases using the data-driven testing approach.</doc>
+<status status="PASS" endtime="20160314 17:11:41.420" starttime="20160314 17:11:34.486"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="3">Critical Tests</stat>
+<stat fail="0" pass="3">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Test" pass="3">Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
